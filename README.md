@@ -26,3 +26,7 @@ Informations Personnelles :
 - Le SGBD utilisé est sqlite3. (Modifiable dans settings.py par "DATABASES = {...}")
 - Le langage choisi est le Francais (Modifiable dans settings.py par "LANGUAGE_CODE = ''")
 - Le fuseau horaire choisi est UTC (Modifiable dans settings.py par "TIME_ZONE = ''")
+- Je me suis rendu compte lors de la création de la commande que certains données
+sont manquantes (notamment order_purchase_date et order_purchase_heure sur l'ex 5).
+Ne sachant pas comment les traiter, j'ai opté pour autoriser que ces deux champs
+soient Null dans la base de données.

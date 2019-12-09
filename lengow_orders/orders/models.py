@@ -14,10 +14,10 @@ class Order(models.Model):
     idFlux = models.IntegerField()
 
     # <order_purchase_date>2014-10-21</order_purchase_date>
-    order_purchase_date = models.DateField()
+    order_purchase_date = models.DateField(null=True)
 
     # <order_purchase_heure>14:59:51</order_purchase_heure>
-    order_purchase_heure = models.TimeField()
+    order_purchase_heure = models.TimeField(null=True)
 
     # <order_amount>34.5</order_amount>
     # Au vu des exemples, un chiffre après la virgule suffit.
@@ -30,17 +30,3 @@ class Order(models.Model):
 
     def __str__(self):
         return self.id
-
-# Exemple de code pour tester si la classe fonctionne avec l'exemple 1 :
-# python3 manage.py shell
-# from orders.models import Order
-# from datetime import time
-# from datetime import date
-# o1 = Order(id = "111-2222222-3333333",
-#             marketplace = "amazon",
-#             idFlux = 88827,
-#             order_purchase_date = date(2014, 10, 21),
-#             order_purchase_heure = time(14, 59, 51, 0),
-#             order_amount = 34.5)
-# o1.id
-# o1.save()
