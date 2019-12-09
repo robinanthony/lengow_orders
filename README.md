@@ -19,3 +19,10 @@ Pour aller plus loin
 Au choix :
 - Ajouter/modifier une commande
 - Utiliser Django Rest Framework pour mettre à disposition les commandes précédemment enregistrées en base de données via une API
+
+
+Informations Personnelles :
+- Le projet est en mode Debug.(Modifiable dans settings.py par "DEBUG = False")
+- Le SGBD utilisé est sqlite3. (Modifiable dans settings.py par "DATABASES = {...}")
+- Le langage choisi est le Francais (Modifiable dans settings.py par "LANGUAGE_CODE = ''")
+- Le fuseau horaire choisi est UTC (Modifiable dans settings.py par "TIME_ZONE = ''")
