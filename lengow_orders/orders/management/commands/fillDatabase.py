@@ -1,10 +1,10 @@
-from django.core.management.base import BaseCommand, CommandError
-from orders.models import Order
+from django.core.management.base import BaseCommand
+from lengow_orders.orders.models import Order
 import requests
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as et
 from datetime import time, date
-
 from dateutil import parser
+
 
 class Command(BaseCommand):
     help = "Va chercher le fichier disponible sur l'adresse \
@@ -12,14 +12,14 @@ class Command(BaseCommand):
             disponibles dans la base de données."
 
     def handle(self, *args, **options):
-        URL = "http://test.lengow.io/orders-test.xml"
+        url = "http://test.lengow.io/orders-test.xml"
 
         # Récupération du fichier xml
-        response = requests.get(URL)
+        response = requests.get(url)
         data = response.content
 
         # Récupération de la racine du fichier XML
-        xml_root = ET.fromstring(data)
+        xml_root = et.fromstring(data)
 
         # On récupère le noeud parent qui nous interesse : <orders></orders>
         orders = xml_root.find("orders")
@@ -35,10 +35,10 @@ class Command(BaseCommand):
             actual_order.idFlux = order.find("idFlux").text
             actual_order.order_amount = order.find("order_amount").text
 
-            if (order.find("order_purchase_date").text is not None):
+            if order.find("order_purchase_date").text is not None:
                 dt = parser.parse(order.find("order_purchase_date").text)
                 actual_order.order_purchase_date = date(dt.year, dt.month, dt.day)
-            if (order.find("order_purchase_heure").text is not None):
+            if order.find("order_purchase_heure").text is not None:
                 dt = parser.parse(order.find("order_purchase_heure").text)
                 actual_order.order_purchase_heure = time(dt.hour, dt.minute, dt.second)
 

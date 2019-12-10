@@ -1,0 +1,10 @@
+Welcome. Can you see all my orders ?
+{% if orders_list %}
+    <ul>
+    {% for order in orders_list %}
+        <li><a href="{% url 'orders:order' order.id %}">Commande numéro {{ order.id }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No order are available.</p>
+{% endif %}

@@ -1,7 +1,10 @@
 venv/
 __pycache__/
+/__pycache__/
 db.sqlite3
 
+# PyCharm idea
+.idea/
 
 # django migrations
 

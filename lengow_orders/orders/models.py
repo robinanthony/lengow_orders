@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+
 
 # Les commentaires représentent un exemple des lignes choisies
 class Order(models.Model):
@@ -22,7 +22,7 @@ class Order(models.Model):
     # <order_amount>34.5</order_amount>
     # Au vu des exemples, un chiffre après la virgule suffit.
     # J'ai peut-être vu gros avec 5 chiffres ...
-    order_amount = models.DecimalField(decimal_places = 1, max_digits = 5)
+    order_amount = models.DecimalField(decimal_places=1, max_digits=5)
 
     class Meta:
         verbose_name = "Commande"
