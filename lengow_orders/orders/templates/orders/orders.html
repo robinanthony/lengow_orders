@@ -1,10 +1,36 @@
-Welcome. Can you see all my orders ?
-{% if orders_list %}
-    <ul>
-    {% for order in orders_list %}
-        <li><a href="{% url 'orders:order' order.id %}">Commande numéro {{ order.id }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No order are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+    Do you want to search an order ?
+    <form action="{% url 'orders:orders' %}" method="post">
+        {% csrf_token %}
+        <input aria-label="Marketplace" name="marketplace" type="text" placeholder="Marketplace..."
+               {% if marketplace %} value="{{ marketplace }}" {% endif %}>
+        <input aria-label="IdFlux" name="idflux" type="text" placeholder="IdFlux..."
+               {% if idflux %} value="{{ idflux }}" {% endif %}>
+        <input aria-label="Day" name="day" type="text" placeholder="Day (DD)..."
+               {% if day %} value="{{ day }}" {% endif %}>
+        <input aria-label="Month" name="month" type="text" placeholder="Month (MM)..."
+               {% if month %} value="{{ month }}" {% endif %}>
+        <input aria-label="Year" name="year" type="text" placeholder="Year (YYYY)..."
+               {% if year %} value="{{ year }}" {% endif %}>
+        <button type="submit">Search !</button>
+    </form>
+
+    Welcome. Can you see all the orders ?
+    {% if orders_list %}
+        <ul>
+        {% for order in orders_list %}
+            <li><a href="{% url 'orders:order' order.id %}">Commande numéro {{ order.id }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No order are available.</p>
+    {% endif %}
+</body>
+</html>
+

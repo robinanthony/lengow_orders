@@ -1,14 +1,24 @@
-Welcome. Can you see this order ?
-{% if order %}
-    <ul>
-        <li>{{ order.id }}</li>
-        <li>{{ order.marketplace }}</li>
-        <li>{{ order.idFlux }}</li>
-        <li>{{ order.order_purchase_date }}</li>
-        <li>{{ order.order_purchase_heure }}</li>
-        <li>{{ order.order_amount }}</li>
-        <li><a href="{% url 'orders:orders' %}">Retour</a></li>
-    </ul>
-{% else %}
-    <p>No order are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+    Welcome. Can you see this order ?
+    {% if order %}
+        <ul>
+            <li>{{ order.id }}</li>
+            <li>{{ order.marketplace }}</li>
+            <li>{{ order.idFlux }}</li>
+            <li>{{ order.order_purchase_date }}</li>
+            <li>{{ order.order_purchase_heure }}</li>
+            <li>{{ order.order_amount }}</li>
+            <li><a href="{% url 'orders:orders' %}">Retour</a></li>
+        </ul>
+    {% else %}
+        <p>No order are available.</p>
+    {% endif %}
+</body>
+</html>
+
