@@ -3,33 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Orders</title>
-</head>
-<body>
-    Do you want to search an order ?
-    <form action="{% url 'orders:orders' %}" method="post">
-        {% csrf_token %}
-        <input aria-label="Marketplace" name="marketplace" type="text" placeholder="Marketplace..."
-               {% if marketplace %} value="{{ marketplace }}" {% endif %}>
-        <input aria-label="IdFlux" name="idflux" type="text" placeholder="IdFlux..."
-               {% if idflux %} value="{{ idflux }}" {% endif %}>
-        <input aria-label="Day" name="day" type="text" placeholder="Day (DD)..."
-               {% if day %} value="{{ day }}" {% endif %}>
-        <input aria-label="Month" name="month" type="text" placeholder="Month (MM)..."
-               {% if month %} value="{{ month }}" {% endif %}>
-        <input aria-label="Year" name="year" type="text" placeholder="Year (YYYY)..."
-               {% if year %} value="{{ year }}" {% endif %}>
-        <button type="submit">Search !</button>
-    </form>
 
-    Welcome. Can you see all the orders ?
-    {% if orders_list %}
-        <ul>
-        {% for order in orders_list %}
-            <li><a href="{% url 'orders:order' order.id %}">Commande numéro {{ order.id }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No order are available.</p>
-    {% endif %}
+    {% load static %}
+    <link rel="stylesheet" href='{% static "orders/css/bootstrap4_4_1.min.css" %}'>
+</head>
+<body style="padding-top:56px;">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Orders</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsOrders" aria-controls="navbarsOrders" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsOrders">
+            <ul class="navbar-nav mr-auto">
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+<!--                </li>-->
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{% url 'orders:orders' %}" method="post">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" aria-label="Marketplace" name="marketplace" type="text"
+                               placeholder="Marketplace..." {% if marketplace %} value="{{marketplace}}" {% endif %}>
+                <input class="form-control mr-sm-2" aria-label="IdFlux" name="idflux" type="text" placeholder="IdFlux..."
+                           {% if idflux %} value="{{idflux}}" {% endif %}>
+                <input class="form-control mr-sm-2" aria-label="Day" name="day" type="text" placeholder="Day (DD)..."
+                           {% if day %} value="{{day}}" {% endif %}>
+                <input class="form-control mr-sm-2"  aria-label="Month" name="month" type="text" placeholder="Month (MM)..."
+                           {% if month %} value="{{month}}" {% endif %}>
+                <input class="form-control mr-sm-2"  aria-label="Year" name="year" type="text" placeholder="Year (YYYY)..."
+                           {% if year %} value="{{year}}" {% endif %}>
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search an order !</button>
+            </form>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            {% if orders_list %}
+                {% for order in orders_list %}
+                    <div class="media text-muted pt-3">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <a href="{% url 'orders:order' order.id %}"><strong class="d-block text-gray-dark">Order {{order.id}}</strong></a>
+                        Marketplace : {{order.marketplace}}
+                        </p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="media text-muted pt-3">
+                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">No order found !</strong>
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <script src='{% static "orders/js/jquery_3_4_1.slim.min.js" %}'></script>
+    <script src='{% static "orders/js/popper.min.js" %}'></script>
+    <script src='{% static "orders/js/bootstrap.min.js" %}'></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ from django.db import models
 
 
 # Les commentaires représentent un exemple des lignes choisies
+# pour une entitée Order
 class Order(models.Model):
     # <order_id>111-2222222-3333333</order_id>
     # Je suis parti du principe que ce champs est l'identifiant d'une commande

@@ -3,21 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Order</title>
+
+    {% load static %}
+    <link rel="stylesheet" href='{% static "orders/css/bootstrap4_4_1.min.css" %}'>
 </head>
-<body>
-    Welcome. Can you see this order ?
-    {% if order %}
-        <ul>
-            <li>{{ order.id }}</li>
-            <li>{{ order.marketplace }}</li>
-            <li>{{ order.idFlux }}</li>
-            <li>{{ order.order_purchase_date }}</li>
-            <li>{{ order.order_purchase_heure }}</li>
-            <li>{{ order.order_amount }}</li>
-            <li><a href="{% url 'orders:orders' %}">Retour</a></li>
-        </ul>
-    {% else %}
-        <p>No order are available.</p>
-    {% endif %}
+<body style="padding-top:56px;">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Orders</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsOrders" aria-controls="navbarsOrders" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsOrders">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'orders:orders' %}">All orders<span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6>Order id : {{order.id}}</h6>
+
+            {% if order %}
+                <ul>
+                    <li>Marketplace : {{order.marketplace}}</li>
+                    <li>Id Flux : {{order.idFlux}}</li>
+                    <li>Date : {{order.order_purchase_date}}</li>
+                    <li>Hour : {{order.order_purchase_heure}}</li>
+                    <li>Amount : {{order.order_amount }}</li>
+                </ul>
+            {% else %}
+                <p>No order are available.</p>
+            {% endif %}
+
+        </div>
+        <small class="d-block text-left mt-3">
+          <a href="{% url 'orders:orders' %}">Retour</a>
+        </small>
+    </main>
+
+    <script src='{% static "orders/js/jquery_3_4_1.slim.min.js" %}'></script>
+    <script src='{% static "orders/js/popper.min.js" %}'></script>
+    <script src='{% static "orders/js/bootstrap.min.js" %}'></script>
 </body>
 </html>
