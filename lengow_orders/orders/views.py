@@ -3,33 +3,27 @@ from .models import Order
 from rest_framework import viewsets
 from .serializers import OrderSerializer
 
+# 'filter_name': 'field_name'
+FIELD_SPECIFICATION = {
+    'marketplace__icontains': 'marketplace',
+    'idFlux': 'idflux',
+    'order_purchase_date__day': 'day',
+    'order_purchase_date__month': 'month',
+    'order_purchase_date__year': 'year',
+}
+
 
 def orders(request):
     context = dict()
     orders_list = Order.objects.all()
 
     if request.method == "POST":
-        marketplace = request.POST.get('marketplace')
-        idflux = request.POST.get('idflux')
-        day = request.POST.get('day')
-        month = request.POST.get('month')
-        year = request.POST.get('year')
-
-        if marketplace != '':
-            orders_list = orders_list.filter(marketplace__icontains=marketplace)
-            context['marketplace'] = marketplace
-        if idflux != '':
-            orders_list = orders_list.filter(idFlux=idflux)
-            context['idflux'] = idflux
-        if day != '':
-            orders_list = orders_list.filter(order_purchase_date__day=day)
-            context['day'] = day
-        if month != '':
-            orders_list = orders_list.filter(order_purchase_date__month=month)
-            context['month'] = month
-        if year != '':
-            orders_list = orders_list.filter(order_purchase_date__year=year)
-            context['year'] = year
+        for filter_name, field_name in FIELD_SPECIFICATION.items():
+            field_value = request.POST.get(field_name)
+            if field_value != '':
+                print({filter_name: field_value})
+                orders_list = orders_list.filter(**{filter_name: field_value})
+                context[field_name] = field_value
 
     context['orders_list'] = orders_list
     return render(request, 'orders/orders.html', context)

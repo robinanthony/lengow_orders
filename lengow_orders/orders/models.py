@@ -29,4 +29,6 @@ class Order(models.Model):
         ordering = ['order_purchase_date']
 
     def __str__(self):
-        return self.id
+        return "Commande d'id {}, effectuée sur {} au sein du flux {} le {} à {} en quantité {}.".format(
+            self.id, self.marketplace, self.idFlux, self.order_purchase_date,
+            self.order_purchase_heure, self.order_amount)
