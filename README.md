@@ -1,12 +1,13 @@
-# lengow_orders
+##### lengow_orders
 
-Problématique
+#### Problématique
 
 Le but de ce test est de comprendre votre utilisation de Django. Il n'y a pas de piège, nous voulons simplement mesurer votre niveau technique.
 Le but est de récupérer des produits provenant d'un flux xml et de les manipuler. Vous pouvez utiliser le SGBD que vous souhaitez.
 
 
-Tâches
+#### Tâches
+
 Chaque tâche doit être faite avec les bonnes pratiques et en respectant la PEP8.
 - Créer un projet Django
 - Créer une app "orders".
@@ -14,19 +15,21 @@ Chaque tâche doit être faite avec les bonnes pratiques et en respectant la PEP
 - Dans cette app créer une commande Django permettant de récupérer les commandes de l'API suivante et de les enregistrer en utilisant le modèle que vous venez de créer.
 - Créer les vues nécessaires pour lister les commandes, lister 1 commande et rechercher selon les champs du modèle et afficher les résultats.
 
-Pour aller plus loin
+#### Pour aller plus loin
 
 Au choix :
 - Ajouter/modifier une commande
 - Utiliser Django Rest Framework pour mettre à disposition les commandes précédemment enregistrées en base de données via une API
 
 
-Informations Personnelles :
-- Le projet est en mode Debug.(Modifiable dans settings.py par "DEBUG = False")
-- Le SGBD utilisé est sqlite3. (Modifiable dans settings.py par "DATABASES = {...}")
-- Le langage choisi est le Francais (Modifiable dans settings.py par "LANGUAGE_CODE = ''")
-- Le fuseau horaire choisi est UTC (Modifiable dans settings.py par "TIME_ZONE = ''")
-- Je me suis rendu compte lors de la création de la commande que certains données
-sont manquantes (notamment order_purchase_date et order_purchase_heure sur l'ex 5).
-Ne sachant pas comment les traiter, j'ai opté pour autoriser que ces deux champs
-soient Null dans la base de données.
+#### Commandes pour le lancement
+
+A la racine du projet :
+- python3 -m venv venv
+- source venv/bin/activate
+- pip3 install -r requirements.txt
+- cd lengow_orders
+- python3 manage.py makemigrations
+- python3 manage.py migrate
+- python3 manage.py fillDatabase
+- python3 manage.py runserver
