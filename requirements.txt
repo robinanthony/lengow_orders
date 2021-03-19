@@ -4,7 +4,7 @@ pytz==2019.3
 sqlparse==0.3.0
 certifi==2019.11.28
 chardet==3.0.4
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 idna==2.8
 python-dateutil==2.8.1
 requests==2.22.0
